@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered Lab Test Interpretation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="navbar">
+        <button id="signin-btn" class="nav-btn" onclick="loginWithGoogle()">Sign In</button>
+        <button id="signup-btn" class="nav-btn" onclick="loginWithGoogle()">Sign Up</button>
+        <button id="logout-btn" class="nav-btn" onclick="logoutUser()" style="display: none;">Logout</button>
+    </div>
+    
+    <h1>AI-Powered Lab Test Interpretation</h1>
+    <p>Upload your lab test file (TXT, PDF, or JPG) for analysis.</p>
+
+    <!-- File Upload & Button -->
+    <div class="upload-container">
+        <label for="file-input" class="file-input-label">Select File</label>
+        <input type="file" id="file-input" accept=".txt,.pdf,.jpg">
+        <button class="btn" onclick="uploadFile()">Upload & Analyze</button>
+    </div>
+
+    <p id="file-name" class="file-name"></p>
+
+    <div id="loader" class="loader"></div>
+    <p id="processing-text" class="processing-text">Analyzing your report, please wait...</p>
+
+    <!-- Results Section -->
+    <div id="results" class="results-container" style="display: none;">
+        <div id="analysis-content"></div>
+        <a id="download-link" href="#" download>
+            <button class="btn">Download Report</button>
+        </a>
+    </div>
+
+    <footer>
+        <a href="#">About</a> |
+        <a href="#">How it works</a> |
+        <a href="#">Medical Glossary</a> |
+        <a href="#">Privacy Notice</a>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

@@ -2,8 +2,7 @@
   "builds": [
     {
       "src": "server.py",
-      "use": "@vercel/python",
-      "maxDuration": 60
+      "use": "@vercel/python"
     }
   ],
   "routes": [

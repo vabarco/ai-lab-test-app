@@ -1,11 +1,19 @@
 {
-  "functions": {
-    "server.py": {
-      "runtime": "now-php@1.0.0",
+  "builds": [
+    {
+      "src": "server.py",
+      "use": "@vercel/python",
       "maxDuration": 60
     }
-  },
+  ],
   "routes": [
-    { "src": "/(.*)", "dest": "server.py" }
+    {
+      "src": "/static/(.*)",
+      "dest": "/static/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "server.py"
+    }
   ]
 }

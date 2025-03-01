@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "functions": {
-    "server.py": {
-      "runtime": "python@3.11",
-      "maxDuration": 60
+  "builds": [
+    {
+      "src": "server.py",
+      "use": "@vercel/python",
+      "config": { "maxDuration": 60 }
     }
-  },
+  ],
   "routes": [
     { "src": "/(.*)", "dest": "server.py" }
   ]

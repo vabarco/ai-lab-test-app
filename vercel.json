@@ -1,17 +1,11 @@
 {
-  "functions": {
-    "server.py": {
-      "runtime": "python@3.13",
-      "maxDuration": 60
-    }
-  },
   "routes": [
     {
-      "src": "/static/(.*)",
-      "dest": "/static/$1"
+      "src": "/login/google",
+      "dest": "server.py"
     },
     {
-      "src": "/(.*)",
+      "src": "/login/google/authorized",
       "dest": "server.py"
     }
   ]

@@ -1,0 +1,14 @@
+[build]
+  command = "pip install -r requirements.txt"
+  functions = "functions"
+
+[dev]
+  framework = "flask"
+
+[functions]
+  directory = "functions"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

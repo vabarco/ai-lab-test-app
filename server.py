@@ -8,6 +8,8 @@ load_dotenv()
 os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
 
 from flask import Flask, request, jsonify, session, send_from_directory, redirect, url_for
+from flask import Flask, jsonify
+from flask_lambda import FlaskLambda
 from flask_dance.contrib.google import make_google_blueprint, google
 from supabase import create_client, Client
 import openai
@@ -18,8 +20,6 @@ import traceback
 import re
 from fpdf import FPDF
 from flask_cors import CORS
-
-
 
 # Debugging: Check if variables are loaded
 print("SUPABASE_URL:", os.getenv("SUPABASE_URL"))
@@ -40,7 +40,7 @@ supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 # ✅ Flask App Setup
-app = Flask(__name__, static_folder="public", static_url_path="/")
+app = FlaskLambda(__name__)
 app.secret_key=os.getenv("SECRET_KEY")
 app.config["SESSION_TYPE"] = "filesystem"
 CORS(app)
@@ -58,9 +58,9 @@ google_bp = make_google_blueprint(
 app.register_blueprint(google_bp, url_prefix="/login")
 
 # ✅ Serve Frontend Files
-@app.route("/")
-def serve_index():
-    return send_from_directory("public", "index.html")
+@app.route('/')
+def home():
+    return jsonify({"message": "Flask running on Netlify!"})
 
 @app.route("/<path:filename>")
 def serve_static(filename):

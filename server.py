@@ -70,7 +70,7 @@ def serve_static(filename):
 @app.route("/google-login")
 def google_login():
     if not google.authorized:
-        redirect_uri = " https://67c463edbdee209889835896--cozy-jelly-2acaec.netlify.app/login/google/authorized"
+        redirect_uri = "https://67c467efb81cfb4ed2496af4--cozy-jelly-2acaec.netlify.app/login/google/authorized"
         return google.authorize_redirect(redirect_uri)
 
     resp = google.get("/oauth2/v2/userinfo")
@@ -96,7 +96,7 @@ def google_login():
     session["user_name"] = user_name
     session["user_id"] = user_info["id"]
 
-    return redirect(" https://67c463edbdee209889835896--cozy-jelly-2acaec.netlify.app/")
+    return redirect("https://67c467efb81cfb4ed2496af4--cozy-jelly-2acaec.netlify.app/")
 
 # ✅ Check Authentication Status
 @app.route("/is_authenticated")

@@ -12,7 +12,7 @@ function displayFileName() {
 }
 
 async function loginWithGoogle() {
-    window.location.href = "/login/google";
+    window.location.href = "https://cozy-jelly-2acaec.netlify.app/login/google";
 }
 
 async function logoutUser() {

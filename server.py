@@ -66,11 +66,12 @@ def home():
 def serve_static(filename):
     return send_from_directory("public", filename)
 
-# ✅ Google Login
+# ✅ Google Login (Updated for Netlify)
 @app.route("/google-login")
 def google_login():
     if not google.authorized:
-        return redirect(url_for("google.login"))
+        redirect_uri = "https://cozy-jelly-2acaec.netlify.app/login/google/authorized"
+        return google.authorize_redirect(redirect_uri)
 
     resp = google.get("/oauth2/v2/userinfo")
     if not resp.ok:
@@ -95,7 +96,7 @@ def google_login():
     session["user_name"] = user_name
     session["user_id"] = user_info["id"]
 
-    return redirect(url_for("serve_index"))
+    return redirect("https://cozy-jelly-2acaec.netlify.app/")
 
 # ✅ Check Authentication Status
 @app.route("/is_authenticated")

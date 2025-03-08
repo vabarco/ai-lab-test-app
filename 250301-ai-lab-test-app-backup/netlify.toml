@@ -1,5 +1,5 @@
 [build]
-  publish = "public"  # Change this if your files are in a different folder
+  publish = "public"  # Keep this if your frontend files are in /public
   command = "echo 'No build command needed'"
 
 [[redirects]]
@@ -8,6 +8,6 @@
   status = 200
 
 [[headers]]
-  for = "/script.js"
+  for = "/static/script.js"  # ✅ Update path to reflect new location
   [headers.values]
   Content-Type = "application/javascript"

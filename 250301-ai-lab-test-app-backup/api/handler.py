@@ -16,7 +16,7 @@ from fpdf import FPDF
 from flask_cors import CORS
 import fitz  # PyMuPDF for better PDF text extraction
 from flask_lambda import FlaskLambda
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 
 # Load environment variables from .env file
 load_dotenv()
@@ -57,13 +57,19 @@ google_bp = make_google_blueprint(
 )
 app.register_blueprint(google_bp, url_prefix="/login")
 
-# ✅ Serve Frontend Files
+# ✅ Serve the main index.html file
 @app.route("/")
 def serve_index():
     return send_from_directory("public", "index.html")
 
-@app.route("/<path:filename>")
+# ✅ Serve static files from /static/
+@app.route("/static/<path:filename>")
 def serve_static(filename):
+    return send_from_directory("static", filename)
+
+# ✅ Serve public files from /public/
+@app.route("/<path:filename>")
+def serve_public(filename):
     return send_from_directory("public", filename)
 
 # ✅ Google Login

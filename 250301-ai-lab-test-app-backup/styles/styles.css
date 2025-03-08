@@ -1,0 +1,122 @@
+/* General Reset */
+body, h1, h2, p, a, input, button {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Main Container */
+.container {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Logo */
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Form */
+h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    text-align: left;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Buttons */
+.btn {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+.btn.google {
+    background-color: #db4437;
+    color: white;
+}
+
+.btn.microsoft {
+    background-color: #0078D4;
+    color: white;
+}
+
+.btn.apple {
+    background-color: black;
+    color: white;
+}
+
+button:focus, input:focus {
+    outline: none;
+}
+
+/* Divider */
+.divider {
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+    text-transform: uppercase;
+    font-size: 12px;
+    color: #888;
+}
+
+.divider::before, .divider::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid #ddd;
+}
+
+.divider span {
+    margin: 0 10px;
+}
+
+/* Footer */
+footer {
+    margin-top: 15px;
+    font-size: 12px;
+}
+
+footer a {
+    text-decoration: none;
+    color: #0078D4;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}

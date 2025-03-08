@@ -11,6 +11,7 @@
   from = "/is_authenticated"
   to = "/.netlify/functions/server"
   status = 200
+  force = true
 
 [[headers]]
   for = "/static/script.js"

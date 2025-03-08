@@ -1,0 +1,13 @@
+[build]
+  publish = "public"  # Change this if your files are in a different folder
+  command = "echo 'No build command needed'"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/server"
+  status = 200
+
+[[headers]]
+  for = "/script.js"
+  [headers.values]
+  Content-Type = "application/javascript"

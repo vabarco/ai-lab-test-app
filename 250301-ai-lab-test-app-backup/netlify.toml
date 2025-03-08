@@ -1,5 +1,5 @@
 [build]
-  publish = "public"  # Keep this if your frontend files are in /public
+  publish = "public"
   command = "echo 'No build command needed'"
 
 [[redirects]]
@@ -7,7 +7,12 @@
   to = "/.netlify/functions/server"
   status = 200
 
+[[redirects]]
+  from = "/is_authenticated"
+  to = "/.netlify/functions/server"
+  status = 200
+
 [[headers]]
-  for = "/static/script.js"  # ✅ Update path to reflect new location
+  for = "/static/script.js"
   [headers.values]
   Content-Type = "application/javascript"

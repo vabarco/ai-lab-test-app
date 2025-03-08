@@ -1,0 +1,14 @@
+# Ignore environment variables
+.env
+
+# Ignore local logs
+*.log
+
+# Ignore build artifacts
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore Netlify & Vercel folders
+.netlify/
+.vercel/

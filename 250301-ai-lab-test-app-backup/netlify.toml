@@ -8,7 +8,19 @@
   status = 200
 
 [[redirects]]
+  from = "/login/google"
+  to = "/.netlify/functions/server"
+  status = 200
+  force = true
+
+[[redirects]]
   from = "/is_authenticated"
+  to = "/.netlify/functions/server"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/logout"
   to = "/.netlify/functions/server"
   status = 200
   force = true

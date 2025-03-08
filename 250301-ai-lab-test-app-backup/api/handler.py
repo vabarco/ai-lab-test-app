@@ -72,22 +72,22 @@ def serve_static(filename):
 def serve_public(filename):
     return send_from_directory("public", filename)
 
-# ✅ Google Login
+# ✅ Google Login for Netlify
 @app.route("/google-login")
 def google_login():
     if not google.authorized:
-        return redirect(url_for("google.login"))
+        return redirect(url_for("google.login", _external=True))  # Ensure full URL
 
     resp = google.get("/oauth2/v2/userinfo")
     if not resp.ok:
-        return f"Google login failed: {resp.text}", 400
+        return jsonify({"error": f"Google login failed: {resp.text}"}), 400
 
     user_info = resp.json()
     user_email = user_info.get("email")
     user_name = user_info.get("name", "Unknown User")
 
     if not user_email:
-        return "Error: Google did not return an email address.", 400
+        return jsonify({"error": "Error: Google did not return an email address."}), 400
 
     # ✅ Check if user exists in Supabase
     existing_user = supabase.table("users").select("*").eq("email", user_email).execute()
@@ -96,12 +96,17 @@ def google_login():
         # ✅ Insert new user
         supabase.table("users").insert({"email": user_email, "name": user_name}).execute()
 
-    # ✅ Store user details in session
-    session["user_email"] = user_email
-    session["user_name"] = user_name
-    session["user_id"] = user_info["id"]
+    # ✅ Store user details in a signed token instead of session
+    token_data = {
+        "user_email": user_email,
+        "user_name": user_name,
+        "user_id": user_info["id"],
+        "exp": datetime.utcnow() + timedelta(days=1)  # Token expires in 24 hours
+    }
+    
+    token = jwt.encode(token_data, os.getenv("SECRET_KEY"), algorithm="HS256")
 
-    return redirect(url_for("serve_index"))
+    return jsonify({"message": "Login successful", "token": token, "user": token_data})
 
 # ✅ Check Authentication Status
 @app.route("/is_authenticated")

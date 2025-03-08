@@ -2,29 +2,53 @@
   publish = "public"
   command = "echo 'No build command needed'"
 
+[functions]
+  directory = "api"  # ✅ Ensure Netlify Functions look inside /api
+
+# ✅ Redirect all API & backend routes to Netlify Functions
 [[redirects]]
   from = "/api/*"
-  to = "/.netlify/functions/server"
+  to = "/.netlify/functions/server/:splat"
   status = 200
+  force = true
 
 [[redirects]]
   from = "/login/google"
-  to = "/.netlify/functions/server"
+  to = "/.netlify/functions/server/google-login"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/google-login"
+  to = "/.netlify/functions/server/google-login"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/login/google/authorized"
+  to = "/.netlify/functions/server/google-callback"
   status = 200
   force = true
 
 [[redirects]]
   from = "/is_authenticated"
-  to = "/.netlify/functions/server"
+  to = "/.netlify/functions/server/is_authenticated"
   status = 200
   force = true
 
 [[redirects]]
   from = "/logout"
-  to = "/.netlify/functions/server"
+  to = "/.netlify/functions/server/logout"
   status = 200
   force = true
 
+[[redirects]]
+  from = "/analyze"
+  to = "/.netlify/functions/server/analyze"
+  status = 200
+  force = true
+
+# ✅ Serve Static Files Correctly
 [[headers]]
   for = "/static/script.js"
   [headers.values]

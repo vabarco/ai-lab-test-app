@@ -3,7 +3,7 @@
   command = "echo 'No build command needed'"
 
 [functions]
-  directory = "api"  # ✅ Ensure Netlify Functions look inside /api
+  directory = "api"  # ✅ Ensure Netlify Functions use /api
 
 # ✅ Redirect all API & backend routes to Netlify Functions
 [[redirects]]
